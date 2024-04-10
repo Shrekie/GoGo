@@ -2,7 +2,7 @@ extends Node
 
 @export var bounce_moving_node : AnimatableBody2D
 
-var move_speed = 100.0
+var move_speed = 300.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
