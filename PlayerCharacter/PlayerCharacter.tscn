@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://ctavqptl7lqyq"]
+[gd_scene load_steps=11 format=3 uid="uid://ctavqptl7lqyq"]
 
 [ext_resource type="Texture2D" uid="uid://b0l5lwgpdrqnj" path="res://Sprites/ProtoMovingSheet.png" id="1_xeh5f"]
-[ext_resource type="PackedScene" uid="uid://cybsh74h1t8oh" path="res://PlayerCharacter/Movement.tscn" id="2_3ee06"]
-[ext_resource type="Script" path="res://PlayerCharacter/Movement.gd" id="3_1suyu"]
+[ext_resource type="Script" path="res://PlayerCharacter/InputMover.gd" id="2_qyuim"]
+[ext_resource type="Script" path="res://Health/Lifeforce.gd" id="3_yaevu"]
+[ext_resource type="Script" path="res://Health/HealthByColor.gd" id="4_28kxy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7k4uj"]
 atlas = ExtResource("1_xeh5f")
@@ -61,7 +62,16 @@ animation = &"moving"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_54gkn")
 
-[node name="Movement" parent="." node_paths=PackedStringArray("input_moving_node", "input_moving_sprite") instance=ExtResource("2_3ee06")]
-script = ExtResource("3_1suyu")
+[node name="InputMover" type="Node" parent="." node_paths=PackedStringArray("input_moving_node", "input_moving_sprite")]
+script = ExtResource("2_qyuim")
 input_moving_node = NodePath("..")
 input_moving_sprite = NodePath("../AnimatedSprite2D")
+
+[node name="HealthByColor" type="Node" parent="."]
+script = ExtResource("4_28kxy")
+
+[node name="Lifeforce" type="Node" parent="HealthByColor" node_paths=PackedStringArray("lifeforced_node")]
+script = ExtResource("3_yaevu")
+lifeforced_node = NodePath("../..")
+
+[connection signal="damaged" from="HealthByColor/Lifeforce" to="HealthByColor" method="_on_lifeforce_damaged"]

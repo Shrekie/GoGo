@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlg8tvs05ax22"]
+
+[ext_resource type="Script" path="res://PlayerScore/PointSpawner.gd" id="1_rdsvf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g1tyg"]
+size = Vector2(150, 150)
+
+[node name="PointSpawner" type="Area2D"]
+script = ExtResource("1_rdsvf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_g1tyg")
+
+[node name="NewPointCooldown" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="NewPointCooldown" to="." method="_on_new_point_cooldown_timeout"]

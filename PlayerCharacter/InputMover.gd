@@ -36,7 +36,7 @@ func movement_actions(delta):
 	
 	if input != Vector2.ZERO:
 		input_moving_sprite.play("moving")
-	else:
+	elif not input_moving_sprite.is_playing():
 		input_moving_sprite.play("still")
 		
 	if velocity != Vector2.ZERO:

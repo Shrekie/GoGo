@@ -1,13 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://cfr2wikbqp7mh"]
 
 [ext_resource type="PackedScene" uid="uid://clydkk5ic6in4" path="res://WormHarmer/WormHead.tscn" id="1_xento"]
-[ext_resource type="Script" path="res://WormHarmer/Segments.gd" id="3_d08n0"]
+[ext_resource type="Script" path="res://WormHarmer/WormSegmenter.gd" id="2_hsnnx"]
 
-[node name="HarmerWorm" type="Node2D"]
+[node name="WormHarmer" type="Node2D"]
 
 [node name="WormHead" parent="." instance=ExtResource("1_xento")]
 
-[node name="WormSegments" type="Node2D" parent="." node_paths=PackedStringArray("segment_leader")]
-script = ExtResource("3_d08n0")
+[node name="WormSegmenter" type="Node2D" parent="." node_paths=PackedStringArray("segment_leader")]
+script = ExtResource("2_hsnnx")
 segment_leader = NodePath("../WormHead")
-metadata/_edit_group_ = true

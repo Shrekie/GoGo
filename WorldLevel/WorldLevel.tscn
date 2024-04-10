@@ -1,20 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://qhoxeci762cj"]
+[gd_scene load_steps=9 format=3 uid="uid://qhoxeci762cj"]
 
-[ext_resource type="PackedScene" uid="uid://cfr2wikbqp7mh" path="res://WormHarmer/HarmerWorm.tscn" id="1_pt2wo"]
+[ext_resource type="PackedScene" uid="uid://cfr2wikbqp7mh" path="res://WormHarmer/WormHarmer.tscn" id="1_pt2wo"]
 [ext_resource type="PackedScene" uid="uid://djeasyqxuyxa3" path="res://Obstruction/EdgeHorizontalWall.tscn" id="2_4m2xt"]
 [ext_resource type="PackedScene" uid="uid://hwjtphbpml1x" path="res://Obstruction/EdgeCornerWall.tscn" id="3_itrp8"]
 [ext_resource type="PackedScene" uid="uid://ct6bxmxbuxiep" path="res://Obstruction/EdgeVerticalWall.tscn" id="3_upiq8"]
 [ext_resource type="Texture2D" uid="uid://bvt4ncmscch43" path="res://Sprites/Floor.png" id="3_y66vk"]
+[ext_resource type="PackedScene" uid="uid://c7vnyd855jmp4" path="res://Obstruction/CenterPillar.tscn" id="4_lu2mw"]
 [ext_resource type="PackedScene" uid="uid://ctavqptl7lqyq" path="res://PlayerCharacter/PlayerCharacter.tscn" id="5_tae07"]
+[ext_resource type="PackedScene" uid="uid://dlg8tvs05ax22" path="res://PlayerScore/PointSpawner.tscn" id="8_jn78t"]
 
 [node name="WorldLevel" type="Node"]
-
-[node name="PlayerCharacter" parent="." instance=ExtResource("5_tae07")]
-position = Vector2(406, 342)
-collision_mask = 3
-
-[node name="HarmerWorm" parent="." instance=ExtResource("1_pt2wo")]
-position = Vector2(864, 488)
 
 [node name="Floor" type="Sprite2D" parent="."]
 z_index = -1
@@ -24,31 +19,55 @@ texture = ExtResource("3_y66vk")
 region_enabled = true
 region_rect = Rect2(0, 0, 1520, 820)
 
-[node name="EdgeWalls" type="Node" parent="."]
+[node name="PlayerCharacter" parent="." instance=ExtResource("5_tae07")]
+position = Vector2(128, 106)
+collision_mask = 3
 
-[node name="EdgeHorizontalWallTop" parent="EdgeWalls" instance=ExtResource("2_4m2xt")]
+[node name="WormHarmer" parent="." instance=ExtResource("1_pt2wo")]
+position = Vector2(650, 702)
+
+[node name="Obstructions" type="Node" parent="."]
+
+[node name="CenterPillar" parent="Obstructions" instance=ExtResource("4_lu2mw")]
+position = Vector2(800, 450)
+
+[node name="EdgeHorizontalWallTop" parent="Obstructions" instance=ExtResource("2_4m2xt")]
 position = Vector2(800, 20)
 
-[node name="EdgeHorizontalWallBottom" parent="EdgeWalls" instance=ExtResource("2_4m2xt")]
+[node name="EdgeHorizontalWallBottom" parent="Obstructions" instance=ExtResource("2_4m2xt")]
 position = Vector2(800, 880)
 
-[node name="EdgeVerticalWallRight" parent="EdgeWalls" instance=ExtResource("3_upiq8")]
+[node name="EdgeVerticalWallRight" parent="Obstructions" instance=ExtResource("3_upiq8")]
 position = Vector2(1580, 450)
 
-[node name="EdgeVerticalWallLeft" parent="EdgeWalls" instance=ExtResource("3_upiq8")]
+[node name="EdgeVerticalWallLeft" parent="Obstructions" instance=ExtResource("3_upiq8")]
 position = Vector2(20, 450)
 
-[node name="EdgeCornerWallTopRight" parent="EdgeWalls" instance=ExtResource("3_itrp8")]
+[node name="EdgeCornerWallTopRight" parent="Obstructions" instance=ExtResource("3_itrp8")]
 position = Vector2(1560, 40)
 rotation = 1.5708
 
-[node name="EdgeCornerWallTopLeft" parent="EdgeWalls" instance=ExtResource("3_itrp8")]
+[node name="EdgeCornerWallTopLeft" parent="Obstructions" instance=ExtResource("3_itrp8")]
 position = Vector2(40, 40)
 
-[node name="EdgeCornerWallBottomRight" parent="EdgeWalls" instance=ExtResource("3_itrp8")]
+[node name="EdgeCornerWallBottomRight" parent="Obstructions" instance=ExtResource("3_itrp8")]
 position = Vector2(1560, 860)
 rotation = 3.14159
 
-[node name="EdgeCornerWallBottomLeft" parent="EdgeWalls" instance=ExtResource("3_itrp8")]
+[node name="EdgeCornerWallBottomLeft" parent="Obstructions" instance=ExtResource("3_itrp8")]
 position = Vector2(40, 860)
 rotation = -1.5708
+
+[node name="PointSpawners" type="Node" parent="."]
+
+[node name="PointSpawner" parent="PointSpawners" instance=ExtResource("8_jn78t")]
+position = Vector2(336, 272)
+
+[node name="PointSpawner2" parent="PointSpawners" instance=ExtResource("8_jn78t")]
+position = Vector2(1264, 272)
+
+[node name="PointSpawner3" parent="PointSpawners" instance=ExtResource("8_jn78t")]
+position = Vector2(336, 624)
+
+[node name="PointSpawner4" parent="PointSpawners" instance=ExtResource("8_jn78t")]
+position = Vector2(1264, 624)

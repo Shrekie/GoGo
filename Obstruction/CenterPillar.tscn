@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7vnyd855jmp4"]
+
+[ext_resource type="Texture2D" uid="uid://dkosu123n1cby" path="res://Sprites/CenterPillar.png" id="1_0v7mm"]
+
+[node name="CenterPillar" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0v7mm")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -144, 124, -72, 124, 72, 0, 144, -124, 72, -124, -72)

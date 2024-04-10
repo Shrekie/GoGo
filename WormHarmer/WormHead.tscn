@@ -1,15 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://clydkk5ic6in4"]
 
-[ext_resource type="Script" path="res://WormHarmer/WormHead.gd" id="1_slxe2"]
 [ext_resource type="Texture2D" uid="uid://bv3yu3qngodv6" path="res://Sprites/WormHead.png" id="2_5cb3h"]
+[ext_resource type="Script" path="res://WormHarmer/BounceMover.gd" id="2_wtcxd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_27aag"]
-radius = 16.0312
+radius = 17.0
 
 [node name="WormHead" type="AnimatableBody2D"]
 collision_mask = 2
 sync_to_physics = false
-script = ExtResource("1_slxe2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(4, 0)
@@ -17,3 +16,7 @@ texture = ExtResource("2_5cb3h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_27aag")
+
+[node name="BounceMover" type="Node" parent="." node_paths=PackedStringArray("bounce_moving_node")]
+script = ExtResource("2_wtcxd")
+bounce_moving_node = NodePath("..")

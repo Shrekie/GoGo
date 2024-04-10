@@ -1,17 +1,21 @@
-extends AnimatableBody2D
+extends Node
+
+@export var bounce_moving_node : AnimatableBody2D
 
 var move_speed = 100.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
-	var velocity = Vector2.from_angle(rotation) * move_speed * delta
-	var collision = move_and_collide(velocity)
+	var velocity = \
+	Vector2.from_angle(bounce_moving_node.rotation) * move_speed * delta
+	
+	var collision = bounce_moving_node.move_and_collide(velocity)
 	
 	if collision:
 		if randi() % 2 == 0:
-			rotation = \
+			bounce_moving_node.rotation = \
 			velocity.bounce(collision.get_normal()).angle() + PI / 8
 		else:
-			rotation = \
+			bounce_moving_node.rotation = \
 			velocity.bounce(collision.get_normal()).angle() - PI / 8
