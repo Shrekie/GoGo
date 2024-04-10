@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://djeasyqxuyxa3"]
+
+[ext_resource type="Texture2D" uid="uid://b5ml438qten56" path="res://Sprites/EdgeHorizontalWall.png" id="1_7nqv1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_52lty"]
+size = Vector2(1440, 40)
+
+[node name="EdgeHorizontalWall" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7nqv1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_52lty")
