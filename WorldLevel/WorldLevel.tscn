@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://qhoxeci762cj"]
+[gd_scene load_steps=10 format=3 uid="uid://qhoxeci762cj"]
 
 [ext_resource type="PackedScene" uid="uid://cfr2wikbqp7mh" path="res://WormHarmer/WormHarmer.tscn" id="1_pt2wo"]
 [ext_resource type="PackedScene" uid="uid://djeasyqxuyxa3" path="res://Obstruction/EdgeHorizontalWall.tscn" id="2_4m2xt"]
 [ext_resource type="PackedScene" uid="uid://hwjtphbpml1x" path="res://Obstruction/EdgeCornerWall.tscn" id="3_itrp8"]
 [ext_resource type="PackedScene" uid="uid://ct6bxmxbuxiep" path="res://Obstruction/EdgeVerticalWall.tscn" id="3_upiq8"]
 [ext_resource type="Texture2D" uid="uid://bvt4ncmscch43" path="res://Sprites/Floor.png" id="3_y66vk"]
+[ext_resource type="Script" path="res://WorldLevel/DeathMenu.gd" id="4_7l74x"]
 [ext_resource type="PackedScene" uid="uid://c7vnyd855jmp4" path="res://Obstruction/CenterPillar.tscn" id="4_lu2mw"]
 [ext_resource type="PackedScene" uid="uid://ctavqptl7lqyq" path="res://PlayerCharacter/PlayerCharacter.tscn" id="5_tae07"]
 [ext_resource type="PackedScene" uid="uid://dlg8tvs05ax22" path="res://PlayerScore/PointSpawner.tscn" id="8_jn78t"]
@@ -25,6 +26,48 @@ collision_mask = 3
 
 [node name="WormHarmer" parent="." instance=ExtResource("1_pt2wo")]
 position = Vector2(650, 702)
+
+[node name="GameMenu" type="Node2D" parent="."]
+z_index = 1
+position = Vector2(800, 450)
+
+[node name="BoxContainer" type="BoxContainer" parent="GameMenu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -72.0
+offset_right = 124.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+alignment = 1
+vertical = true
+
+[node name="TextMarginContainer" type="MarginContainer" parent="GameMenu/BoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="Text" type="Label" parent="GameMenu/BoxContainer/TextMarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "0"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="GameMenu/BoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "New Game"
+
+[node name="DeathMenu" type="Node" parent="GameMenu" node_paths=PackedStringArray("new_game_button", "mortal_character")]
+script = ExtResource("4_7l74x")
+new_game_button = NodePath("../BoxContainer/Button")
+mortal_character = NodePath("../../PlayerCharacter")
 
 [node name="Obstructions" type="Node" parent="."]
 
