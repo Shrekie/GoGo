@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://ds5iq2xks7bnn"]
+[gd_scene load_steps=5 format=3 uid="uid://ds5iq2xks7bnn"]
 
 [ext_resource type="Texture2D" uid="uid://bdogu6gaokkv6" path="res://Sprites/WormSegment.png" id="2_j3dte"]
 [ext_resource type="Script" path="res://WormHarmer/FollowMover.gd" id="2_swa5h"]
+[ext_resource type="Script" path="res://WormHarmer/OnCollisionDamager.gd" id="3_e6ptg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d5akg"]
-radius = 12.5
+radius = 14.0
 
 [node name="FollowingWormSegment" type="AnimatableBody2D"]
-collision_mask = 2
+collision_layer = 0
+collision_mask = 0
 sync_to_physics = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -17,6 +19,19 @@ texture = ExtResource("2_j3dte")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_d5akg")
 
+[node name="DamagingArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamagingArea"]
+shape = SubResource("CircleShape2D_d5akg")
+
 [node name="FollowMover" type="Node" parent="." node_paths=PackedStringArray("follower")]
 script = ExtResource("2_swa5h")
 follower = NodePath("..")
+
+[node name="OnCollisionDamager" type="Node" parent="." node_paths=PackedStringArray("damaging_node")]
+script = ExtResource("3_e6ptg")
+damaging_node = NodePath("..")
+
+[connection signal="body_entered" from="DamagingArea" to="OnCollisionDamager" method="_on_damaging_area_body_entered"]

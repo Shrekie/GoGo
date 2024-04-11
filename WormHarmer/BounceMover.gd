@@ -4,7 +4,6 @@ extends Node
 
 var move_speed = 300.0
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
 	var velocity = \

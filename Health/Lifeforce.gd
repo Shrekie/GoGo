@@ -2,8 +2,8 @@ extends Node
 
 @export var lifeforced_node : Node2D
 
-var max_health = 100
-var health = 100
+var max_health = 100.00
+var health = 100.00
 
 signal damaged()
 signal died()
