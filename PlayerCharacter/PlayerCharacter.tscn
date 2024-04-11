@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://ctavqptl7lqyq"]
+[gd_scene load_steps=12 format=3 uid="uid://ctavqptl7lqyq"]
 
 [ext_resource type="Texture2D" uid="uid://b0l5lwgpdrqnj" path="res://Sprites/ProtoMovingSheet.png" id="1_xeh5f"]
 [ext_resource type="Script" path="res://PlayerCharacter/InputMover.gd" id="2_qyuim"]
 [ext_resource type="Script" path="res://Health/Lifeforce.gd" id="3_yaevu"]
 [ext_resource type="Script" path="res://Health/HealthByColor.gd" id="4_28kxy"]
+[ext_resource type="Script" path="res://Health/HealthRegenerator.gd" id="5_w3882"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7k4uj"]
 atlas = ExtResource("1_xeh5f")
@@ -76,4 +77,14 @@ lifeforced_node = NodePath("..")
 script = ExtResource("4_28kxy")
 lifeforce = NodePath("../Lifeforce")
 
+[node name="HealthRegenerator" type="Node" parent="." node_paths=PackedStringArray("lifeforce")]
+script = ExtResource("5_w3882")
+lifeforce = NodePath("../Lifeforce")
+
+[node name="RegenerationTimer" type="Timer" parent="HealthRegenerator"]
+wait_time = 0.5
+autostart = true
+
 [connection signal="damaged" from="Lifeforce" to="HealthByColor" method="_on_lifeforce_damaged"]
+[connection signal="healed" from="Lifeforce" to="HealthByColor" method="_on_lifeforce_healed"]
+[connection signal="timeout" from="HealthRegenerator/RegenerationTimer" to="HealthRegenerator" method="_on_regeneration_timer_timeout"]

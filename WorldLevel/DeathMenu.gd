@@ -9,6 +9,8 @@ func _ready():
 	
 func _on_mortal_character_died():
 	new_game_button.show()
+	mortal_character.get_node("InputMover").disable = true
+	mortal_character.hide()
 
 func _on_button_button_up():
 	get_tree().reload_current_scene()

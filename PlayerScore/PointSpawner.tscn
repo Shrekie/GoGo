@@ -2,16 +2,17 @@
 
 [ext_resource type="Script" path="res://PlayerScore/PointSpawner.gd" id="1_rdsvf"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g1tyg"]
-size = Vector2(150, 150)
+[sub_resource type="CircleShape2D" id="CircleShape2D_m5q6d"]
+radius = 40.0
 
 [node name="PointSpawner" type="Area2D"]
 script = ExtResource("1_rdsvf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_g1tyg")
+shape = SubResource("CircleShape2D_m5q6d")
 
 [node name="NewPointCooldown" type="Timer" parent="."]
-autostart = true
+wait_time = 10.0
+one_shot = true
 
 [connection signal="timeout" from="NewPointCooldown" to="." method="_on_new_point_cooldown_timeout"]

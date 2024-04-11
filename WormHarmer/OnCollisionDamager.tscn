@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfk3st3qmjphb"]
+
+[ext_resource type="Script" path="res://WormHarmer/OnCollisionDamager.gd" id="1_sbg30"]
+
+[node name="OnCollisionDamager" type="Node"]
+script = ExtResource("1_sbg30")

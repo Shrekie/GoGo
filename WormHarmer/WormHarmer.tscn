@@ -10,3 +10,9 @@
 [node name="WormSegmenter" type="Node2D" parent="." node_paths=PackedStringArray("segment_leader")]
 script = ExtResource("2_hsnnx")
 segment_leader = NodePath("../WormHead")
+
+[node name="NewSegmentTimer" type="Timer" parent="WormSegmenter"]
+wait_time = 4.0
+autostart = true
+
+[connection signal="timeout" from="WormSegmenter/NewSegmentTimer" to="WormSegmenter" method="_on_new_segment_timer_timeout"]

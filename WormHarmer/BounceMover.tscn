@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddoqqttlv86mj"]
+
+[ext_resource type="Script" path="res://WormHarmer/BounceMover.gd" id="1_y1p6u"]
+
+[node name="BounceMover" type="Node"]
+script = ExtResource("1_y1p6u")

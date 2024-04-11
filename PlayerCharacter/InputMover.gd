@@ -7,8 +7,11 @@ extends Node
 @export var acceleration = 1000
 @export var friction = 100
 
+var disable = false
+
 func _physics_process(delta):
-	movement_actions(delta)
+	if not disable:
+		movement_actions(delta)
 	
 func movement_actions(delta):
 	
